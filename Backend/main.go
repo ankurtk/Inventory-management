@@ -1,13 +1,15 @@
 package main
 
 import (
-    "fmt"
-    "net/http"
+    "log"
+	"net/http"
+	"github.com/ankurtk/Inventory-management/Backend/database"
+	"github.com/ankurtk/Inventory-management/Backend/routes"
 )
 
 func main() {
-    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        fmt.Fprintf(w, "Welcome to the Inventory Management API")
-    })
-    http.ListenAndServe(":8080", nil)
+	database.Connect()
+	router := routes.RegisterRoutes()
+	log.Println("Server is running on port 8080")
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
