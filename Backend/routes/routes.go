@@ -11,9 +11,9 @@ func RegisterRoutes() *mux.Router {
 	// Define API endpoints
 	router.HandleFunc("/api/products", controllers.GetProducts).Methods("GET")
 	router.HandleFunc("/api/products", controllers.CreateProduct).Methods("POST")
-	// router.HandleFunc("/api/products/{id}", controllers.GetProductByID).Methods("GET")
-	// router.HandleFunc("/api/products/{id}", controllers.UpdateProduct).Methods("PUT")
-	// router.HandleFunc("/api/products/{id}", controllers.DeleteProduct).Methods("DELETE")
+	router.HandleFunc("/api/products/{id}", controllers.GetProductByID).Methods("GET")
+	router.HandleFunc("/api/products/{id}", controllers.UpdateProduct).Methods("PATCH")
+	router.HandleFunc("/api/products/{id}", controllers.DeleteProduct).Methods("DELETE")
 
 	return router
 }
